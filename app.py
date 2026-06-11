@@ -73,6 +73,17 @@ def report_alert():
 
     return jsonify({"message": "Alert added successfully"})
 
+# --- Delete alerts ---#
+@app.route("/api/clear-alerts", methods=["GET"])
+def clear_alerts():
+    conn = sqlite3.connect("alerts.db")
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM alerts")
+    conn.commit()
+    conn.close()
+
+    return jsonify({"message": "All alerts cleared"})
+
 import os
 
 if __name__ == "__main__":
