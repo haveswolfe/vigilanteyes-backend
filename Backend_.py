@@ -73,6 +73,9 @@ def report_alert():
 
     return jsonify({"message": "Alert added successfully"})
 
+import os
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5500, debug=True, use_reloader=False)
+    port = int(os.environ.get("PORT", 5500))
+    app.run(host="0.0.0.0", port=port)
             
